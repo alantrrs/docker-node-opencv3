@@ -42,7 +42,7 @@ RUN \
   npm install -g npm && \
   echo -e '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
 
-ldconfig
+RUN ldconfig
 
 # Define default command.
 CMD ["bash"]

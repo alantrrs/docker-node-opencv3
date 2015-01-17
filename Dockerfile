@@ -1,6 +1,5 @@
 FROM ubuntu:14.04
 
-
 # Install OpenCV 3.0
 RUN apt-get -y update
 RUN apt-get -y install python-pip git nano curl tmux htop mc wget libeigen3-dev
@@ -8,13 +7,11 @@ RUN apt-get install -y build-essential cmake libgtk2.0-dev pkg-config libavcodec
 RUN pip install matplotlib
 
 RUN git clone https://github.com/Itseez/opencv.git
-RUN git clone https://github.com/Itseez/opencv_contrib.git
 
 RUN mkdir /opencv/build
 WORKDIR /opencv/build
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D BUILD_PYTHON_SUPPORT=ON \
-      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules/  \
       -D CMAKE_INSTALL_PREFIX=/usr/local \
       -D WITH_OPENGL=ON \
       -D WITH_TBB=OFF \
@@ -24,8 +21,6 @@ RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
       ..
 RUN make -j7
 RUN make install
-
-
 
 # Install Node.js
 RUN \
